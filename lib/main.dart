@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myUiChallange/FeedsPage.dart';
+import 'package:myUiChallange/Pages/FeedsPage.dart';
 
 void main() {
   runApp(MyApp());
