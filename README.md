@@ -1,4 +1,4 @@
-# myUiChallange
+# Instagram ui chellange on flutter
 
 A new Flutter project.
 
