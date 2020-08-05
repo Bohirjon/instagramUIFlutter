@@ -25,9 +25,10 @@ class FeedsPage extends StatelessWidget {
           title: Text(
             'Instagram',
             style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Billabong',
-            ),
+                color: Colors.black,
+                fontFamily: 'Billabong',
+                fontSize: 32.0,
+                fontStyle: FontStyle.normal),
           ),
           actions: <Widget>[
             Transform.rotate(
@@ -40,8 +41,20 @@ class FeedsPage extends StatelessWidget {
           ],
         ),
         body: Container(
-          child: getStoriesWidget(),
           margin: EdgeInsets.only(top: 5.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              _getStoriesWidget(),
+//              Container(
+//                width: double.infinity,
+//                height: 1.0,
+//                color: Colors.grey,
+//              ),
+//              _getFeedsWidget()
+            ],
+          ),
         ));
   }
 
@@ -90,17 +103,23 @@ class FeedsPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Container(
-            width: 75.0,
-            height: 75.0,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                fit: BoxFit.fitWidth,
-                image: NetworkImage(story.authorImageUri),
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.pink, width: 2.3)),
+            child: Container(
+              width: 75.0,
+              height: 75.0,
+              margin: EdgeInsets.all(1.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: NetworkImage(story.authorImageUri),
+                ),
               ),
             ),
           ),
-          SizedBox(height: 9.0),
+          SizedBox(height: 4.0),
           Text(
             story.authorName,
             style: TextStyle(
@@ -113,7 +132,7 @@ class FeedsPage extends StatelessWidget {
     );
   }
 
-  Widget getStoriesWidget() {
+  Widget _getStoriesWidget() {
     var stories = List<Story>();
     stories.add(_storyRepository.getProfileStory());
     stories.addAll(_storyRepository.getStories());
@@ -129,7 +148,7 @@ class FeedsPage extends StatelessWidget {
         });
   }
 
-  Widget getFeedsWidget() {
+  Widget _getFeedsWidget() {
     return Text('Feeds');
   }
 }
