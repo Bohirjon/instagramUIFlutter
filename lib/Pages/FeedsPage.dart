@@ -2,12 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:myUiChallange/abstractions/PostRepository.dart';
 import 'package:myUiChallange/abstractions/StoryRepository.dart';
+import 'package:myUiChallange/mocks/MockPostRepository.dart';
 import 'package:myUiChallange/mocks/MockStoryRepository.dart';
+import 'package:myUiChallange/model/Post.dart';
 import 'package:myUiChallange/model/Story.dart';
 
 class FeedsPage extends StatelessWidget {
-//  final PostRepository _postRepository = MockPostRepository();
+  final PostRepository _postRepository = MockPostRepository();
   final StoryRepository _storyRepository = MockStoryRepository();
 
   @override
@@ -40,21 +44,16 @@ class FeedsPage extends StatelessWidget {
             )
           ],
         ),
-        body: Container(
-          margin: EdgeInsets.only(top: 5.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              _getStoriesWidget(),
-//              Container(
-//                width: double.infinity,
-//                height: 1.0,
-//                color: Colors.grey,
-//              ),
-//              _getFeedsWidget()
-            ],
-          ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Container(
+              child: _getStoriesWidget(),
+              height: 120.2,
+            ),
+            Expanded(child: _getFeedsWidget())
+          ],
         ));
   }
 
@@ -148,7 +147,20 @@ class FeedsPage extends StatelessWidget {
         });
   }
 
+  Widget _getFeedWidget(Post post) {
+    return Container(
+      child: Text(post.authorName),
+    );
+  }
+
   Widget _getFeedsWidget() {
-    return Text('Feeds');
+    var feeds = _postRepository.getPosts();
+    return ListView.builder(
+      itemCount: feeds.length,
+      itemBuilder: (context, index) {
+        var post = feeds[index];
+        return _getFeedWidget(post);
+      },
+    );
   }
 }
