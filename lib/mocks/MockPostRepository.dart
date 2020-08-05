@@ -3,8 +3,7 @@ import 'package:myUiChallange/model/Post.dart';
 
 class MockPostRepository extends PostRepository {
   @override
-  Future<List<Post>> getPosts() async {
-    await Future.delayed(Duration(seconds: 2));
+  List<Post> getPosts() {
     var result = List<Post>();
     result.add(Post(
       authorName: 'Jurabek Azizkhujaev',
