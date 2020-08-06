@@ -44,6 +44,32 @@ class FeedsPage extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.black87,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.home), title: Container()),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.search), title: Container()),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.add_box), title: Container()),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite_border), title: Container()),
+            BottomNavigationBarItem(
+                icon: Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle),
+                  child: Opacity(
+                    opacity: 0.85,
+                    child: Image.network(
+                        'https://avatars1.githubusercontent.com/u/17494227?s=460&u=e176633da165ef7d3a053e1073511ddbe59d21c9&v=4'),
+                  ),
+                  height: 22.0,
+                  width: 22.0,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                ),
+                title: Container()),
+          ],
+        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
