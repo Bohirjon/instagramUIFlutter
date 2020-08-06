@@ -85,37 +85,36 @@ class FeedsPage extends StatelessWidget {
 
   Widget _getProfileStoryWidget(Story story) {
     return Container(
-      child: Column(
+      margin: EdgeInsets.only(top: 5, left: 5),
+      child: Stack(
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Container(
-                width: 75.0,
-                height: 75.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.fitHeight,
-                    image: NetworkImage(story.authorImageUri),
-                  ),
-                ),
+          Container(
+            width: 70.0,
+            height: 70.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                fit: BoxFit.fitHeight,
+                image: NetworkImage(story.authorImageUri),
               ),
-              Align(
-                alignment: FractionalOffset.topRight,
-                child: FlatButton(
-                  color: Colors.transparent,
-                  onPressed: () => {},
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.blue,
-                    size: 35,
-                  ),
-                ),
-              )
-            ],
+            ),
           ),
-          SizedBox(height: 9.0),
-          Text('Your Story', style: TextStyle(color: Colors.grey))
+          Positioned(
+            bottom: 10,
+            right: 0.2,
+            child: IconButton(
+              color: Colors.transparent,
+              onPressed: () => {},
+              icon: Icon(
+                Icons.add_circle,
+                color: Colors.blue,
+                size: 20,
+              ),
+            ),
+          ),
+          Positioned(
+              bottom: 10,
+              child: Text('Your Story', style: TextStyle(color: Colors.grey))),
         ],
       ),
     );
@@ -123,7 +122,7 @@ class FeedsPage extends StatelessWidget {
 
   Widget _getStoryWidget(Story story) {
     return Container(
-      margin: EdgeInsets.only(left: 23.0),
+      margin: EdgeInsets.only(left: 20.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
@@ -132,8 +131,8 @@ class FeedsPage extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.pink, width: 2.3)),
             child: Container(
-              width: 75.0,
-              height: 75.0,
+              width: 70.0,
+              height: 70.0,
               margin: EdgeInsets.all(1.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -175,7 +174,57 @@ class FeedsPage extends StatelessWidget {
 
   Widget _getFeedWidget(Post post) {
     return Container(
-      child: Text(post.authorName),
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 0.15,
+            width: double.infinity,
+            color: Colors.grey,
+          ),
+          Container(
+            margin: EdgeInsets.all(10.0),
+            child: Row(children: <Widget>[
+              Container(
+                decoration: BoxDecoration(shape: BoxShape.circle),
+                child: Container(
+                  width: 35.0,
+                  height: 35.0,
+                  margin: EdgeInsets.all(1.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fitWidth,
+                      image: NetworkImage(post.authorProfileImageUri),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                post.authorName,
+                style: TextStyle(fontWeight: FontWeight.w800),
+              )
+            ]),
+          ),
+          Image.network(post.postContentImageUri),
+          Container(
+            child: Row(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.favorite_border,
+                    color: Colors.black87,
+                    size: 30.0,
+                  ),
+                ),
+                IconButton(icon: Image(image: AssetImage('asserts/topic.png')))
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
