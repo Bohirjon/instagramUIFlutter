@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+<img src="screens/feedsPage.png" width="210"/>
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
