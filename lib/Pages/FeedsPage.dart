@@ -175,6 +175,9 @@ class FeedsPage extends StatelessWidget {
   Widget _getFeedWidget(Post post) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Container(
             height: 0.15,
@@ -205,6 +208,10 @@ class FeedsPage extends StatelessWidget {
               Text(
                 post.authorName,
                 style: TextStyle(fontWeight: FontWeight.w800),
+              ),
+              Positioned(
+                right: 10,
+                child: IconButton(icon: Icon(Icons.more_vert)),
               )
             ]),
           ),
@@ -219,7 +226,7 @@ class FeedsPage extends StatelessWidget {
                     size: 30.0,
                   ),
                 ),
-                IconButton(icon: Image(image: AssetImage('asserts/topic.png')))
+                IconButton(icon: Image(image: AssetImage('assets/topic.png')))
               ],
             ),
           )
