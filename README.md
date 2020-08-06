@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-<img src="screens/feedsPage.png" width="210"/>
+<img src="screens/feedspage.png" width="210"/>
 
 
 ## Getting Started
